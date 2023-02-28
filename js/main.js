@@ -237,6 +237,12 @@ function empDetail(index) {
         }
     }
 
+    window.onkeyup = function(event) {
+        if(event.key == "Escape") {
+            modal.style.display = "none";
+        }
+    }
+
     let infoSec = document.querySelector('.info-sec');
     let photoSec = document.querySelector('.photo-sec');
     let currentDate = new Date().toISOString().split('T')[0];
@@ -245,7 +251,7 @@ function empDetail(index) {
     // console.log(detail.EmpolyeePhoto[0].image);
 
     photoSec.innerHTML = `
-    <img src="${detail.EmpolyeePhoto[0].image}" alt="team" style="height: 250px; width: 250px; border-radius: 10px;">
+    <img src="${detail.EmpolyeePhoto[0].image}" alt="team" style="height: 300px; width: 300px; border-radius: 10px;">
     `;
 
     infoSec.innerHTML = `

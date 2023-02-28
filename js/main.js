@@ -312,8 +312,6 @@ function empDetail(index) {
             return finalSalary;
         }
 
-        console.log(increaseSalary());
-
         let salaryTable = document.querySelector('.salaryTable');
 
         salaryTable.innerHTML = `
@@ -334,8 +332,12 @@ function empDetail(index) {
                 <td>${serviceCharge}</td>
             </tr>
             <tr>
-                <td><b>Total Net Salary</b></td>
+                <td><b>Net Salary</b></td>
                 <td><b>${nSalary}</b></td>
+            </tr>
+            <tr>
+                <td><b>Total Net Salary After Increment</b></td>
+                <td><b>${increaseSalary()}</b></td>
             </tr>
         `;
 

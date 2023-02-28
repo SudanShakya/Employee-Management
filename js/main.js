@@ -19,7 +19,8 @@ function getFormData() {
     var empPost = getEmpPost(); 
 
     var empPhoto = getEmpPhoto();
-    var regDate = new Date().toISOString().split('T')[0];
+    // var regDate = new Date().toISOString().split('T')[0];
+    var regDate = new Date('2021-12-28').toISOString().split("T")[0];
 
     var genderData = getGenderValue();
 
@@ -291,6 +292,7 @@ function empDetail(index) {
     function netSalary() {
         var totalSalary = salary();
         var nSalary = 0;
+        var salaryIncrease = 0.1;
 
         var taxDedu = totalSalary - (totalSalary * 0.2);
         nSalary = taxDedu;
@@ -300,6 +302,17 @@ function empDetail(index) {
 
         var serviceCharge = nSalary - (nSalary * 0.02);
         nSalary = serviceCharge;
+
+        function increaseSalary() {
+            const diffInMonths = (new Date().getFullYear() - new Date(detail.RegistrationDate).getFullYear()) * 12 + new Date().getMonth() - new Date(detail.RegistrationDate).getMonth();
+
+            const numIncreases =  Math.floor((diffInMonths)/3);
+            const finalSalary = Math.floor(totalSalary * Math.pow(1+salaryIncrease, numIncreases));
+            // return finalSalary;
+            return finalSalary;
+        }
+
+        console.log(increaseSalary());
 
         let salaryTable = document.querySelector('.salaryTable');
 
@@ -329,6 +342,4 @@ function empDetail(index) {
         return nSalary;
         
     }
-
-   
 }

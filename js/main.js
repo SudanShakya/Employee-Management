@@ -125,7 +125,6 @@ function formValidation() {
         if(inputName == 'fullName' && inputValue == '') {
             document.querySelector('.fullname').innerHTML = 'Please enter your name.';
             document.getElementById('fullName').classList.add('error-input');
-            isValid = false;
             
         } else if (inputType == 'text' && inputName == 'fullName') {
             if(!namePattern.test(inputValue)){
@@ -138,7 +137,6 @@ function formValidation() {
         else if(inputName == 'address' && inputValue == '') {
             document.querySelector('.address').innerHTML ='Please enter your address.';
             document.getElementById('address').classList.add('error-input');
-            isValid = false;
             
         } else if (inputType == 'text' && inputName == 'address') {
             if(!addressPattern.test(inputValue)) {
@@ -151,7 +149,6 @@ function formValidation() {
         else if(inputName == 'emailAddress' && inputValue == '') {
             document.querySelector('.emailaddress').innerHTML ='Please enter your email address.';
             document.getElementById('emailAddress').classList.add('error-input');
-            isValid = false;
             
         } else if (inputType == 'email' && inputName == 'emailAddress') {
             if(!emailPattern.test(inputValue)) {
@@ -164,7 +161,6 @@ function formValidation() {
         else if(inputName == 'phoneNumber' && inputValue == '') {
             document.querySelector('.phonenumber').innerHTML ='Please enter your phone number.';
             document.getElementById('phoneNumber').classList.add('error-input');
-            isValid = false;
             
         } else if (inputType == 'text' && inputName == 'phoneNumber') {
             if(!phonePattern.test(inputValue)) {
@@ -177,7 +173,6 @@ function formValidation() {
         else if(inputName == 'dateOfBirth' && inputValue == '') {
             document.querySelector('.dateofbirth').innerHTML ='Please enter your date of birth.';
             document.getElementById('dateOfBirth').classList.add('error-input');
-            isValid = false;
             
         } else if(inputType == 'date' && inputName == 'dateOfBirth') {
             let dob = inputValue;
@@ -263,7 +258,7 @@ function empDetail(index) {
         <h6><b>Position:</b> ${detail.EmployeePost}</h6>
         <h6><b>Registered Date:</b> ${detail.RegistrationDate}</h6>
         <h6><b>Gross Salary:</b> ${salary()}</h6>
-        <h6><b>Net Salary:</b> ${grossSalary()}</h6>
+        <h6><b>Net Salary:</b> ${netSalary()}</h6>
 
      `;
 
@@ -293,18 +288,18 @@ function empDetail(index) {
         return age;
     }
 
-    function grossSalary() {
+    function netSalary() {
         var totalSalary = salary();
-        var gSalary = 0;
+        var nSalary = 0;
 
         var taxDedu = totalSalary - (totalSalary * 0.2);
-        gSalary = taxDedu;
+        nSalary = taxDedu;
 
-        var insuranceDedu = gSalary - 500;
-        gSalary = insuranceDedu;
+        var insuranceDedu = nSalary - 500;
+        nSalary = insuranceDedu;
 
-        var serviceCharge = gSalary - (gSalary * 0.02);
-        gSalary = serviceCharge;
+        var serviceCharge = nSalary - (nSalary * 0.02);
+        nSalary = serviceCharge;
 
         let salaryTable = document.querySelector('.salaryTable');
 
@@ -327,11 +322,11 @@ function empDetail(index) {
             </tr>
             <tr>
                 <td><b>Total Net Salary</b></td>
-                <td><b>${gSalary}</b></td>
+                <td><b>${nSalary}</b></td>
             </tr>
         `;
 
-        return gSalary;
+        return nSalary;
         
     }
 
